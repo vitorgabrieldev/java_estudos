@@ -27,3 +27,51 @@ java -version
 javac -version
 ```
 Você deve ver a versão do Java instalada. Se tudo estiver correto, você configurou com sucesso o Java no seu sistema!
+
+
+
+# Uso de container Java com Docker
+
+1. Faça o download no site oficial do docker: [Docker](https://www.docker.com/products/docker-desktop/).
+
+2. Compile o projeto usando (Substitua pelo nome dos seus arquivos):
+``` sh
+  javac -d bin Arquivo1.java Arquivo2.java pasta1/pasta2/*.java
+```
+
+3. Crie o arquivo jar:
+``` sh
+  mkdir -p target
+  jar cvfe target/myapp.jar Main -C bin .
+```
+
+4. Crie um arquivo chamado ```Dockerfile```` e copie o seguinte código dentro dele:
+``` docker
+# Use a imagem base do OpenJDK 22
+FROM openjdk:22-jdk-slim
+
+# Defina o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copie o arquivo JAR da aplicação para o diretório de trabalho no contêiner
+COPY target/myapp.jar /app/myapp.jar
+
+# Comando para executar a aplicação Java
+CMD ["java", "-jar", "/app/myapp.jar"]
+
+```
+
+5. Contrua a imagem docker:
+``` sh
+  docker build -t my-java-app .
+```
+
+6. Execute o container docker:
+``` sh
+  docker run --rm -it my-java-app
+```
+
+7. Forneça a entra ao container:
+``` sh
+  docker run --rm -it my-java-app
+```
