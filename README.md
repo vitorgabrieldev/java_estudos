@@ -45,7 +45,7 @@ Você deve ver a versão do Java instalada. Se tudo estiver correto, você confi
   jar cvfe target/myapp.jar Main -C bin .
 ```
 
-4. Crie um arquivo chamado ```Dockerfile```` e copie o seguinte código dentro dele:
+4. Crie um arquivo chamado ```Dockerfile``` e copie o seguinte código dentro dele:
 ``` docker
 # Use a imagem base do OpenJDK 22
 FROM openjdk:22-jdk-slim
